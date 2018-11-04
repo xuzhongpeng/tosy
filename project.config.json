@@ -1,0 +1,15 @@
+{
+	"description": "写个孙艳的专属app",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wxfb7d6e8525877438",
+	"projectname": "tosy",
+	"miniprogramRoot": "dist/",
+	"condition": {}
+}
