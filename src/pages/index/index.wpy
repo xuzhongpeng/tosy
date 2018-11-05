@@ -1,0 +1,71 @@
+<template>
+    <view class='main'>
+        <view wx:if="{{shouquan}}">
+            <text class="text">请点击授权信息</text>
+            <button 
+                wx:if="{{canIUse}}"
+                class="button" 
+                open-type="getUserInfo" 
+                bindgetuserinfo="bindGetUserInfo">授权登录</button>
+            <view wx:else>请升级微信版本</view>
+        </view>
+        <view wx:else>您没有权限</view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '授权'
+  };
+  data = {
+    //判断小程序的API，回调，参数，组件等是否在当前版本可用。
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    shouquan:true
+  };
+  methods={      
+    bindGetUserInfo(e) {
+        if (e.detail.userInfo.nickName=="😃"){
+            //用户按了允许授权按钮
+            console.log(e.detail.userInfo)
+            wx.redirectTo({ url:"../menu/menu"})
+            } else {
+              this.shouquan=false;
+            }
+        
+    }
+  }
+  onLoad() {
+     // 查看是否授权
+    const that=this
+    wx.getSetting({
+      success: function(res){
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function(res) {
+              console.log(res.userInfo)
+              //wx.redirectTo({ url:"../menu/menu"})
+            }
+          })
+        }
+      }
+    })
+  }  
+}
+</script>
+
+<style lang="less">
+.main{
+    text-align: center;
+    padding-top:100px;
+    .text{
+        font-size: 16px;        
+    }
+    button{
+        width:50%;
+        font-size: 14px;
+        margin-top:20px;  
+    }
+}
+</style>

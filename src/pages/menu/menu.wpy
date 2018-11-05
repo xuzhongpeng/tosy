@@ -1,0 +1,20 @@
+<template>
+    <view>
+        <text>
+            menu
+        </text>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class menu extends wepy.page {
+config = {
+    navigationBarTitleText: '宝宝'
+  };
+}
+</script>
+
+<style>
+
+</style>
